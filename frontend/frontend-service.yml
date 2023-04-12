@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pizzafrontend
+spec:
+  type: NodePort #Define o tipo do servico que sao: ClusterIP, NodePort, LoadBalancer, ExternalName
+  selector:
+    app: pizzafrontend
+  ports:
+    - port: 8080 #Numero da porta exposto internamente no Cluster
+      targetPort: 80 #Define a porta que os containers estao escutando
