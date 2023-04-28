@@ -1,11 +1,14 @@
+#Conectam um cojunto de pods a um nome de servico abstrato e um enderco Ip e fornce a descoberta e roteamento entre pods
+#Expoe uma interface a esses pods que permiteo acesso a rede de dentro do cluster ou entre processo externos e o servico
 apiVersion: v1
 kind: Service
 metadata:
   name: pizzafrontend
 spec:
-  type: NodePort #Define o tipo do servico que sao: ClusterIP, NodePort, LoadBalancer, ExternalName
+  #Nodeport permite acessbilidade externa
+  type: NodePort #Define o tipo do servico que sao: ClusterIP, NodePort, LoadBalancer, ExternalName, Node
   selector:
-    app: pizzafrontend
+    app: pizzafrontend #Utiliza o valor da label, para identificar o pods, utiliza o nome do deployment
   ports:
     - port: 8080 #Numero da porta exposto internamente no Cluster
       targetPort: 80 #Define a porta que os containers estao escutando
